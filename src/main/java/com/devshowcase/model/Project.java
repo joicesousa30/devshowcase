@@ -12,8 +12,8 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-    private String description;
+    private String nome;
+    private String descricao;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "profile_id")
@@ -21,33 +21,39 @@ public class Project {
 
     @ManyToMany
     @JoinTable(
-            name = "project_technologies",
-            joinColumns = @JoinColumn(name = "project_id"),
-            inverseJoinColumns = @JoinColumn(name = "technology_id")
+            name = "projeto_tecnologia",
+            joinColumns = @JoinColumn(name = "projeto_id"),
+            inverseJoinColumns = @JoinColumn(name = "tecnologia_id")
     )
-    private List<Technology> technologies = new ArrayList<>();
+    private List<Technology> tecnologias = new ArrayList<>();
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     private List<Feedback> feedbacks = new ArrayList<>();
 
     // Construtores
     public Project() {}
-    public Project(String name, String description) {
-        this.name = name;
-        this.description = description;
+
+    public Project(String nome, String descricao, Profile profile) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.profile = profile;
     }
 
     // Getters e Setters
     public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
+
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
+
+    public String getDescricao() { return descricao; }
+    public void setDescricao(String descricao) { this.descricao = descricao; }
+
     public Profile getProfile() { return profile; }
     public void setProfile(Profile profile) { this.profile = profile; }
-    public List<Technology> getTechnologies() { return technologies; }
-    public void setTechnologies(List<Technology> technologies) { this.technologies = technologies; }
+
+    public List<Technology> getTecnologias() { return tecnologias; }
+    public void setTecnologias(List<Technology> tecnologias) { this.tecnologias = tecnologias; }
+
     public List<Feedback> getFeedbacks() { return feedbacks; }
     public void setFeedbacks(List<Feedback> feedbacks) { this.feedbacks = feedbacks; }
 }

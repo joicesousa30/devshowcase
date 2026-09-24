@@ -12,22 +12,29 @@ public class Technology {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String nome;
+    private String nivel; // iniciante, intermediário, avançado
 
-    @ManyToMany(mappedBy = "technologies")
-    private List<Project> projects = new ArrayList<>();
+    @ManyToMany(mappedBy = "tecnologias")
+    private List<Project> projetos = new ArrayList<>();
 
     // Construtores
     public Technology() {}
-    public Technology(String name) {
-        this.name = name;
+
+    public Technology(String nome, String nivel) {
+        this.nome = nome;
+        this.nivel = nivel;
     }
 
     // Getters e Setters
     public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-    public List<Project> getProjects() { return projects; }
-    public void setProjects(List<Project> projects) { this.projects = projects; }
+
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
+
+    public String getNivel() { return nivel; }
+    public void setNivel(String nivel) { this.nivel = nivel; }
+
+    public List<Project> getProjetos() { return projetos; }
+    public void setProjetos(List<Project> projetos) { this.projetos = projetos; }
 }

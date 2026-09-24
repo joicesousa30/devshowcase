@@ -12,26 +12,34 @@ public class Profile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String nome;
+    private String bio;
     private String email;
 
     @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
-    private List<Project> projects = new ArrayList<>();
+    private List<Project> projetos = new ArrayList<>();
 
     // Construtores
     public Profile() {}
-    public Profile(String name, String email) {
-        this.name = name;
+
+    public Profile(String nome, String bio, String email) {
+        this.nome = nome;
+        this.bio = bio;
         this.email = email;
     }
 
     // Getters e Setters
     public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
+
+    public String getBio() { return bio; }
+    public void setBio(String bio) { this.bio = bio; }
+
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
-    public List<Project> getProjects() { return projects; }
-    public void setProjects(List<Project> projects) { this.projects = projects; }
+
+    public List<Project> getProjetos() { return projetos; }
+    public void setProjetos(List<Project> projetos) { this.projetos = projetos; }
 }
