@@ -6,6 +6,6 @@ RUN mvn clean package -DskipTests --no-transfer-progress
 
 FROM eclipse-temurin:21
 WORKDIR /app
-COPY --from=build /app/target/devshowcase-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /app/target/devshowcase-api-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
